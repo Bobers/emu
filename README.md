@@ -28,8 +28,8 @@ EMU is a web application that analyzes PRDs using AI to generate:
 
 1. **Clone the repository**
    ```bash
-   git clone [your-repo-url]
-   cd emu-app
+   git clone https://github.com/Bobers/emu.git
+   cd emu
    npm install
    ```
 
@@ -102,6 +102,28 @@ npm run lint
 3. Commit your changes (`git commit -m 'Add some amazing feature'`)
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
+
+## Deployment
+
+### Live Demo
+🚀 **Deployed at**: https://emu-six.vercel.app/
+
+### Deploy to Vercel
+1. Connect your GitHub repository to Vercel
+2. Add environment variables in Vercel dashboard:
+   ```
+   NEXT_PUBLIC_SUPABASE_URL=your-supabase-url
+   NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
+   SUPABASE_SERVICE_ROLE_KEY=your-service-role-key
+   OPENAI_API_KEY=your-openai-api-key
+   NEXT_PUBLIC_APP_URL=https://your-vercel-domain.vercel.app
+   ```
+3. Deploy!
+
+### Common Issues
+- **500 Error**: Check that all environment variables are set correctly
+- **Database Connection**: Ensure Supabase schema is applied and RLS policies are enabled
+- **OpenAI Errors**: Verify your OpenAI API key has sufficient credits
 
 ## License
 
