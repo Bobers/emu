@@ -18,6 +18,17 @@
             background-color: #f8f9fa;
             color: #212529;
             min-height: 100vh;
+            position: relative;
+        }
+
+        .version {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 12px;
+            color: #6c757d;
+            font-weight: 500;
+            z-index: 10;
         }
 
         /* Header */
@@ -185,6 +196,7 @@
     </style>
 </head>
 <body>
+    <div class="version">v0.1.0</div>
 
     <header class="header">
         <div class="logo">GTM Blueprint</div>
@@ -291,8 +303,13 @@
         document.querySelectorAll('.step-card.unlocked').forEach(card => {
             card.addEventListener('click', function() {
                 const stepNumber = this.getAttribute('data-step');
-                // In the future, this will navigate to the specific step
-                console.log('Clicked step:', stepNumber);
+                
+                if (stepNumber === '1') {
+                    // Navigate to problem definition page
+                    window.location.href = 'problem-definition.html?product=' + encodeURIComponent(productDescription || '');
+                } else {
+                    console.log('Clicked step:', stepNumber);
+                }
             });
         });
     </script>

@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Step 1: Problem Definition - GTM Blueprint</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f9fa;
+            color: #212529;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        .version {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 12px;
+            color: #6c757d;
+            font-weight: 500;
+            z-index: 10;
+        }
+
+        /* Header */
+        .header {
+            background-color: #fff;
+            border-bottom: 1px solid #dee2e6;
+            padding: 30px 40px;
+            text-align: center;
+        }
+
+        .header-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: #212529;
+        }
+
+        /* Main Content */
+        .main-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Cards Container */
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            margin-top: 40px;
+        }
+
+        /* Problem Card */
+        .problem-card {
+            background-color: #fff;
+            border: 2px solid #dee2e6;
+            border-radius: 12px;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .problem-card:hover {
+            border-color: #0d6efd;
+            box-shadow: 0 6px 20px rgba(13, 110, 253, 0.1);
+            transform: translateY(-4px);
+        }
+
+        /* Placeholder for images */
+        .card-image {
+            width: 100%;
+            height: 120px;
+            background-color: #e9ecef;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            color: #6c757d;
+        }
+
+        .card-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #212529;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: -0.5px;
+        }
+
+        .card-description {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #495057;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .adopt-button {
+            width: 100%;
+            padding: 12px;
+            background-color: #0d6efd;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .adopt-button:hover {
+            background-color: #0b5ed7;
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .cards-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .cards-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .header {
+                padding: 20px;
+            }
+            
+            .header-title {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="version">v0.1.0</div>
+
+    <header class="header">
+        <h1 class="header-title">Step 1: Defining the Core Problem. Choose the angle that best describes the pain you solve.</h1>
+    </header>
+
+    <main class="main-content">
+        <div class="cards-container">
+            <!-- Card 1: Static Plan Problem -->
+            <div class="problem-card" data-angle="static-plan">
+                <div class="card-image">📄</div>
+                <h2 class="card-title">The "Static Plan" Problem</h2>
+                <p class="card-description">
+                    Traditional GTM plans are static documents that become obsolete in a fast-changing market.
+                </p>
+                <button class="adopt-button">Adopt this Angle</button>
+            </div>
+
+            <!-- Card 2: Founder's Dilemma -->
+            <div class="problem-card" data-angle="founders-dilemma">
+                <div class="card-image">💸</div>
+                <h2 class="card-title">The Founder's Dilemma</h2>
+                <p class="card-description">
+                    Founders lack budget for expert strategists and are forced to guess or use generic templates.
+                </p>
+                <button class="adopt-button">Adopt this Angle</button>
+            </div>
+
+            <!-- Card 3: Living Strategy Gap -->
+            <div class="problem-card" data-angle="living-strategy">
+                <div class="card-image">🔄</div>
+                <h2 class="card-title">The "Living Strategy" Gap</h2>
+                <p class="card-description">
+                    The market lacks a tool that treats GTM as a continuous process. The problem isn't just the initial plan creation.
+                </p>
+                <button class="adopt-button">Adopt this Angle</button>
+            </div>
+
+            <!-- Card 4: Execution Bottleneck -->
+            <div class="problem-card" data-angle="execution-bottleneck">
+                <div class="card-image">🚧</div>
+                <h2 class="card-title">The Execution Bottleneck</h2>
+                <p class="card-description">
+                    The real problem is the gap between strategy and daily execution. Teams struggle to operationalize plans.
+                </p>
+                <button class="adopt-button">Adopt this Angle</button>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Get product description from URL or localStorage
+        const urlParams = new URLSearchParams(window.location.search);
+        const productDescription = urlParams.get('product') || localStorage.getItem('productDescription');
+
+        // Store product description for later use
+        if (productDescription) {
+            localStorage.setItem('productDescription', productDescription);
+        }
+
+        // Handle adopt button clicks
+        document.querySelectorAll('.adopt-button').forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const card = this.closest('.problem-card');
+                const angle = card.getAttribute('data-angle');
+                
+                // Store the selected angle
+                localStorage.setItem('selectedAngle', angle);
+                
+                // In the future, this will navigate to the next step
+                console.log('Selected angle:', angle);
+                alert('Angle selected: ' + angle + '\n\nNext steps coming soon!');
+            });
+        });
+
+        // Handle card clicks
+        document.querySelectorAll('.problem-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const button = this.querySelector('.adopt-button');
+                button.click();
+            });
+        });
+    </script>
+
+</body>
+</html>
