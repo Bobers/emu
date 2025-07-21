@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GTM First Step</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f9fa;
+            color: #212529;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 600px;
+            padding: 20px;
+        }
+
+        .logo-image {
+            width: 80%;
+            max-width: 400px;
+            margin-bottom: 20px;
+            /* To give it a slightly less "perfect" feel */
+            transform: rotate(-0.5deg); 
+        }
+
+        .tagline {
+            font-size: 20px;
+            font-weight: 500;
+            color: #495057;
+            margin-bottom: 30px;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 15px;
+            font-size: 16px;
+            border: 1px solid #ced4da;
+            border-radius: 6px;
+            box-sizing: border-box;
+            margin-bottom: 15px;
+            background-color: #fff;
+            text-align: center;
+        }
+
+        .input-field:focus {
+            outline: none;
+            border-color: #0d6efd;
+            box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.25);
+        }
+
+        .cta-button {
+            width: 100%;
+            padding: 15px;
+            font-size: 18px;
+            font-weight: 500;
+            color: #fff;
+            background-color: #0d6efd;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .cta-button:hover {
+            background-color: #0b5ed7;
+        }
+
+        .loading-container {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+            z-index: 1000;
+        }
+
+        .loading-gif {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <img src="photo_5472125679471557728_y.jpg" alt="GTM First Step" class="logo-image">
+        
+        <p class="tagline">You built the product, we'll build the plan to launch it.</p>
+        
+        <form id="gtm-form">
+            <input type="text" class="input-field" placeholder="Describe your product or service in one sentence..." required>
+            <button type="submit" class="cta-button">Build My First Step</button>
+        </form>
+    </div>
+
+    <div class="loading-container" id="loading-container">
+        <img src="loading.gif" alt="Loading..." class="loading-gif">
+    </div>
+
+    <script>
+        document.getElementById('gtm-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get the product description
+            const productInput = document.querySelector('.input-field');
+            const productDescription = productInput.value;
+            
+            // Hide the main container and show loading
+            document.querySelector('.container').style.display = 'none';
+            const loadingContainer = document.getElementById('loading-container');
+            loadingContainer.style.display = 'flex';
+            
+            // Redirect to blueprint page after 2.73 seconds
+            setTimeout(function() {
+                window.location.href = 'blueprint.html?product=' + encodeURIComponent(productDescription);
+            }, 2730);
+        });
+    </script>
+
+</body>
+</html>

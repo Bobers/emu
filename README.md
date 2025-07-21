@@ -1,130 +1,39 @@
-# EMU - AI Marketing Strategy Engine
+# EMU - GTM Blueprint Generator
 
-Transform your Product Requirements Document (PRD) into a comprehensive, actionable marketing strategy powered by AI.
+A simple, elegant tool that helps entrepreneurs and product builders create their Go-to-Market strategy step by step.
 
 ## Overview
 
-EMU is a web application that analyzes PRDs using AI to generate:
-- In-depth product analysis with market positioning
-- Data-driven channel recommendations based on the Traction framework
-- Complete go-to-market strategies with actionable tactics
-
-## Tech Stack
-
-- **Frontend**: Next.js 14, TypeScript, Tailwind CSS, shadcn/ui
-- **Backend**: Next.js API Routes, OpenAI API
-- **Database**: Supabase (PostgreSQL)
-- **Authentication**: Supabase Auth
-- **State Management**: Zustand
-
-## Prerequisites
-
-- Node.js 18+
-- npm or yarn
-- Supabase account
-- OpenAI API key
-
-## Setup
-
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/Bobers/emu.git
-   cd emu
-   npm install
-   ```
-
-2. **Set up Supabase**
-   - Create a new project at [supabase.com](https://supabase.com)
-   - Run the database schema from `lib/database-schema.sql`
-
-3. **Configure environment variables**
-   Create a `.env.local` file:
-   ```env
-   NEXT_PUBLIC_SUPABASE_URL=your-supabase-url
-   NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
-   SUPABASE_SERVICE_ROLE_KEY=your-service-role-key
-   OPENAI_API_KEY=your-openai-api-key
-   NEXT_PUBLIC_APP_URL=http://localhost:3000
-   ```
-
-4. **Run the development server**
-   ```bash
-   npm run dev
-   ```
-
-5. **Open [http://localhost:3000](http://localhost:3000)**
+EMU transforms your product description into a comprehensive 12-step GTM blueprint, guiding you through every aspect of launching your product successfully.
 
 ## Features
 
-- 🔐 User authentication with Supabase
-- 📄 PRD upload and analysis (supports up to 60 pages)
-- 🤖 AI-powered strategy generation using OpenAI GPT-4
-- 📊 Comprehensive analysis including target audience, positioning, and constraints
-- 🎯 19 traction channel recommendations with fit scores
-- 📅 6-month implementation plan with budget allocation
-- 💾 Save and manage multiple strategies
-- 📋 Export strategies as Markdown
+- **Simple Input**: Just describe your product in one sentence
+- **Guided Journey**: 12-step process covering all aspects of GTM strategy
+- **AI Copilot**: Get contextual tips and guidance at each step
+- **Clean Design**: Minimalist, professional interface
 
-## Project Structure
+## Getting Started
 
-```
-emu-app/
-├── app/                    # Next.js app directory
-│   ├── api/               # API routes
-│   ├── dashboard/         # Protected dashboard pages
-│   └── (auth)/           # Authentication pages
-├── components/            # React components
-├── lib/                   # Utility functions and configurations
-├── types/                 # TypeScript type definitions
-└── public/               # Static assets
-```
+1. Open `index.html` in your browser
+2. Enter your product description
+3. Click "Build My First Step"
+4. Follow the 12-step journey to build your GTM strategy
 
-## Development
+## Files
 
-```bash
-# Run development server
-npm run dev
+- `index.html` - Landing page where users input their product description
+- `blueprint.html` - The 12-step GTM blueprint interface
+- `loading.gif` - Transition animation between pages
+- `photo_5472125679471557728_y.jpg` - Hero image for the landing page
 
-# Build for production
-npm run build
+## Future Development
 
-# Run production server
-npm start
+- Backend integration for saving strategies
+- AI-powered recommendations at each step
+- Export functionality for completed blueprints
+- Team collaboration features
 
-# Run linting
-npm run lint
-```
+---
 
-## Contributing
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-## Deployment
-
-### Live Demo
-🚀 **Deployed at**: https://emu-six.vercel.app/
-
-### Deploy to Vercel
-1. Connect your GitHub repository to Vercel
-2. Add environment variables in Vercel dashboard:
-   ```
-   NEXT_PUBLIC_SUPABASE_URL=your-supabase-url
-   NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
-   SUPABASE_SERVICE_ROLE_KEY=your-service-role-key
-   OPENAI_API_KEY=your-openai-api-key
-   NEXT_PUBLIC_APP_URL=https://your-vercel-domain.vercel.app
-   ```
-3. Deploy!
-
-### Common Issues
-- **500 Error**: Check that all environment variables are set correctly
-- **Database Connection**: Ensure Supabase schema is applied and RLS policies are enabled
-- **OpenAI Errors**: Verify your OpenAI API key has sufficient credits
-
-## License
-
-This project is private and proprietary.
+Built with ❤️ for builders who need a clear path to market.

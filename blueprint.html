@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GTM Blueprint</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f9fa;
+            color: #212529;
+            min-height: 100vh;
+        }
+
+        /* Header */
+        .header {
+            background-color: #fff;
+            border-bottom: 1px solid #dee2e6;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 20px;
+            font-weight: 600;
+            color: #212529;
+        }
+
+        .account-link {
+            color: #6c757d;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .account-link:hover {
+            color: #495057;
+        }
+
+        /* Main Content */
+        .main-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .product-description {
+            margin-bottom: 30px;
+        }
+
+        .product-label {
+            font-size: 18px;
+            color: #495057;
+            margin-bottom: 8px;
+        }
+
+        .product-text {
+            font-size: 24px;
+            font-weight: 500;
+            color: #212529;
+        }
+
+        /* Copilot Tip */
+        .copilot-tip {
+            background-color: #e9ecef;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 40px;
+            position: relative;
+            border-left: 4px solid #0d6efd;
+        }
+
+        .copilot-tip::before {
+            content: "💡";
+            position: absolute;
+            left: -12px;
+            top: 18px;
+            background-color: #f8f9fa;
+            padding: 4px;
+            border-radius: 50%;
+            font-size: 20px;
+        }
+
+        .copilot-label {
+            font-weight: 600;
+            color: #0d6efd;
+            margin-bottom: 8px;
+        }
+
+        .copilot-text {
+            color: #495057;
+            line-height: 1.6;
+        }
+
+        /* Steps Grid */
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .step-card {
+            background-color: #fff;
+            border: 2px solid #dee2e6;
+            border-radius: 8px;
+            padding: 30px 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            min-height: 150px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .step-card.unlocked {
+            border-color: #0d6efd;
+            cursor: pointer;
+        }
+
+        .step-card.unlocked:hover {
+            box-shadow: 0 4px 12px rgba(13, 110, 253, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .step-card.locked {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .step-number {
+            font-size: 14px;
+            color: #6c757d;
+            margin-bottom: 8px;
+        }
+
+        .step-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #212529;
+            margin-bottom: 15px;
+        }
+
+        .step-status {
+            font-size: 14px;
+            padding: 6px 16px;
+            border-radius: 20px;
+            display: inline-block;
+        }
+
+        .step-card.unlocked .step-status {
+            background-color: #0d6efd;
+            color: #fff;
+        }
+
+        .step-card.locked .step-status {
+            background-color: #e9ecef;
+            color: #6c757d;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .steps-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .header {
+                padding: 15px 20px;
+            }
+            
+            .product-text {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="logo">GTM Blueprint</div>
+        <a href="#" class="account-link">My Account</a>
+    </header>
+
+    <main class="main-content">
+        <div class="product-description">
+            <div class="product-label">Your Go-to-Market Map for:</div>
+            <div class="product-text" id="product-text">"An AI tool that summarizes legal documents for lawyers."</div>
+        </div>
+
+        <div class="copilot-tip">
+            <div class="copilot-label">Copilot Tip:</div>
+            <div class="copilot-text">
+                Welcome! I've created your map. A great product solves a painful problem. Let's start by clearly defining that. Click on 'Problem Definition' to begin.
+            </div>
+        </div>
+
+        <div class="steps-grid">
+            <div class="step-card unlocked" data-step="1">
+                <div class="step-number">01</div>
+                <div class="step-title">Problem<br>Definition</div>
+                <div class="step-status">Start Here</div>
+            </div>
+
+            <div class="step-card locked" data-step="2">
+                <div class="step-number">02</div>
+                <div class="step-title">Customer<br>Identification</div>
+                <div class="step-status">Locked</div>
+            </div>
+
+            <div class="step-card locked" data-step="3">
+                <div class="step-number">03</div>
+                <div class="step-title">Competitive<br>Analysis</div>
+                <div class="step-status">Locked</div>
+            </div>
+
+            <div class="step-card locked" data-step="4">
+                <div class="step-number">04</div>
+                <div class="step-title">Positioning<br>Strategy</div>
+                <div class="step-status">Locked</div>
+            </div>
+
+            <div class="step-card locked" data-step="5">
+                <div class="step-number">05</div>
+                <div class="step-title">Messaging &<br>Pricing</div>
+                <div class="step-status">Locked</div>
+            </div>
+
+            <div class="step-card locked" data-step="6">
+                <div class="step-number">06</div>
+                <div class="step-title">Customer<br>Journey</div>
+                <div class="step-status">Locked</div>
+            </div>
+
+            <div class="step-card locked" data-step="7">
+                <div class="step-number">07</div>
+                <div class="step-title">Channel<br>Selection</div>
+                <div class="step-status">Locked</div>
+            </div>
+
+            <div class="step-card locked" data-step="8">
+                <div class="step-number">08</div>
+                <div class="step-title">Trust &<br>Proof</div>
+                <div class="step-status">Locked</div>
+            </div>
+
+            <div class="step-card locked" data-step="9">
+                <div class="step-number">09</div>
+                <div class="step-title">Testing<br>Framework</div>
+                <div class="step-status">Locked</div>
+            </div>
+
+            <div class="step-card locked" data-step="10">
+                <div class="step-number">10</div>
+                <div class="step-title">Success<br>Metrics</div>
+                <div class="step-status">Locked</div>
+            </div>
+
+            <div class="step-card locked" data-step="11">
+                <div class="step-number">11</div>
+                <div class="step-title">Scaling<br>Strategy</div>
+                <div class="step-status">Locked</div>
+            </div>
+
+            <div class="step-card locked" data-step="12">
+                <div class="step-number">12</div>
+                <div class="step-title">Optimization<br>Framework</div>
+                <div class="step-status">Locked</div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Get product description from URL parameter (will be passed from index.html)
+        const urlParams = new URLSearchParams(window.location.search);
+        const productDescription = urlParams.get('product');
+        if (productDescription) {
+            document.getElementById('product-text').textContent = `"${productDescription}"`;
+        }
+
+        // Handle step card clicks
+        document.querySelectorAll('.step-card.unlocked').forEach(card => {
+            card.addEventListener('click', function() {
+                const stepNumber = this.getAttribute('data-step');
+                // In the future, this will navigate to the specific step
+                console.log('Clicked step:', stepNumber);
+            });
+        });
+    </script>
+
+</body>
+</html>
