@@ -50,9 +50,15 @@
             max-width: 1400px;
             margin: 0 auto;
             padding: 40px 20px;
+            display: flex;
+            gap: 40px;
         }
 
-        /* Cards Container */
+        /* Phase 1: Selection View */
+        .selection-phase {
+            width: 100%;
+        }
+
         .cards-container {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -60,7 +66,46 @@
             margin-top: 40px;
         }
 
-        /* Problem Card */
+        /* Phase 2: Refinement View */
+        .refinement-phase {
+            display: flex;
+            gap: 40px;
+            width: 100%;
+        }
+
+        .refinement-phase.hidden {
+            display: none;
+        }
+
+        .selected-cards-area {
+            flex: 2;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            height: fit-content;
+        }
+
+        .refinement-panel {
+            flex: 1;
+            background-color: #fff;
+            border: 1px solid #dee2e6;
+            border-radius: 12px;
+            padding: 30px;
+            height: fit-content;
+            position: sticky;
+            top: 20px;
+        }
+
+        .refinement-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #212529;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #dee2e6;
+            padding-bottom: 15px;
+        }
+
+        /* Problem Card Styles */
         .problem-card {
             background-color: #fff;
             border: 2px solid #dee2e6;
@@ -78,7 +123,24 @@
             transform: translateY(-4px);
         }
 
-        /* Placeholder for images */
+        .problem-card.selected {
+            border-color: #0d6efd;
+            box-shadow: 0 6px 20px rgba(13, 110, 253, 0.15);
+            transform: scale(1.02);
+        }
+
+        .problem-card.greyed-out {
+            opacity: 0.4;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+
+        .problem-card.greyed-out:hover {
+            transform: none;
+            border-color: #dee2e6;
+            box-shadow: none;
+        }
+
         .card-image {
             width: 100%;
             height: 120px;
@@ -126,15 +188,144 @@
             background-color: #0b5ed7;
         }
 
+        /* Refinement Form */
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-label {
+            display: block;
+            font-weight: 500;
+            color: #495057;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ced4da;
+            border-radius: 6px;
+            font-size: 14px;
+            font-family: inherit;
+            transition: border-color 0.2s;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #0d6efd;
+            box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.1);
+        }
+
+        .form-textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ced4da;
+            border-radius: 6px;
+            font-size: 14px;
+            font-family: inherit;
+            min-height: 120px;
+            resize: vertical;
+            transition: border-color 0.2s;
+        }
+
+        .form-textarea:focus {
+            outline: none;
+            border-color: #0d6efd;
+            box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.1);
+        }
+
+        .tags-container {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 25px;
+        }
+
+        .tag {
+            background-color: #e9ecef;
+            color: #495057;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .primary-button {
+            width: 100%;
+            padding: 15px;
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            margin-bottom: 15px;
+        }
+
+        .primary-button:hover {
+            background-color: #218838;
+        }
+
+        .secondary-button {
+            width: 100%;
+            padding: 12px;
+            background-color: #fff;
+            color: #6c757d;
+            border: 1px solid #dee2e6;
+            border-radius: 6px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .secondary-button:hover {
+            border-color: #0d6efd;
+            color: #0d6efd;
+        }
+
+        /* Selected Card Label */
+        .selected-label {
+            background-color: #0d6efd;
+            color: #fff;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 500;
+            position: absolute;
+            top: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            white-space: nowrap;
+        }
+
+        .problem-card.selected {
+            position: relative;
+        }
+
         /* Responsive */
         @media (max-width: 1200px) {
             .cards-container {
                 grid-template-columns: repeat(2, 1fr);
             }
+            
+            .selected-cards-area {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
 
         @media (max-width: 768px) {
+            .main-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
             .cards-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .selected-cards-area {
                 grid-template-columns: 1fr;
             }
             
@@ -146,6 +337,17 @@
                 font-size: 20px;
             }
         }
+
+        /* Animation classes */
+        .fade-out {
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .fade-in {
+            opacity: 1;
+            transition: opacity 0.3s ease;
+        }
     </style>
 </head>
 <body>
@@ -156,45 +358,79 @@
     </header>
 
     <main class="main-content">
-        <div class="cards-container">
-            <!-- Card 1: Static Plan Problem -->
-            <div class="problem-card" data-angle="static-plan">
-                <div class="card-image">📄</div>
-                <h2 class="card-title">The "Static Plan" Problem</h2>
-                <p class="card-description">
-                    Traditional GTM plans are static documents that become obsolete in a fast-changing market.
-                </p>
-                <button class="adopt-button">Adopt this Angle</button>
+        <!-- Phase 1: Selection -->
+        <div class="selection-phase" id="selection-phase">
+            <div class="cards-container">
+                <!-- Card 1: Static Plan Problem -->
+                <div class="problem-card" data-angle="static-plan" data-title="The 'Static Plan' Problem" data-description="Traditional GTM plans are static documents that become obsolete in a fast-changing market." data-tags="Strategy,Planning">
+                    <div class="card-image">📄</div>
+                    <h2 class="card-title">The "Static Plan" Problem</h2>
+                    <p class="card-description">
+                        Traditional GTM plans are static documents that become obsolete in a fast-changing market.
+                    </p>
+                    <button class="adopt-button">Adopt this Angle</button>
+                </div>
+
+                <!-- Card 2: Founder's Dilemma -->
+                <div class="problem-card" data-angle="founders-dilemma" data-title="The Founder's Dilemma" data-description="Founders lack budget for expert strategists and are forced to either guess at their GTM strategy or use generic templates that don't apply to their unique business." data-tags="Audience,Budget">
+                    <div class="card-image">💸</div>
+                    <h2 class="card-title">The Founder's Dilemma</h2>
+                    <p class="card-description">
+                        Founders lack budget for expert strategists and are forced to guess or use generic templates.
+                    </p>
+                    <button class="adopt-button">Adopt this Angle</button>
+                </div>
+
+                <!-- Card 3: Living Strategy Gap -->
+                <div class="problem-card" data-angle="living-strategy" data-title="The 'Living Strategy' Gap" data-description="The market lacks a tool that treats GTM as a continuous process. The problem isn't just the initial plan creation, but ongoing optimization and adaptation." data-tags="Process,Continuous">
+                    <div class="card-image">🔄</div>
+                    <h2 class="card-title">The "Living Strategy" Gap</h2>
+                    <p class="card-description">
+                        The market lacks a tool that treats GTM as a continuous process. The problem isn't just the initial plan creation.
+                    </p>
+                    <button class="adopt-button">Adopt this Angle</button>
+                </div>
+
+                <!-- Card 4: Execution Bottleneck -->
+                <div class="problem-card" data-angle="execution-bottleneck" data-title="The Execution Bottleneck" data-description="The real problem is the gap between strategy and daily execution. Teams struggle to operationalize strategic plans into actionable tasks." data-tags="Execution,Gap">
+                    <div class="card-image">🚧</div>
+                    <h2 class="card-title">The Execution Bottleneck</h2>
+                    <p class="card-description">
+                        The real problem is the gap between strategy and daily execution. Teams struggle to operationalize plans.
+                    </p>
+                    <button class="adopt-button">Adopt this Angle</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Phase 2: Refinement -->
+        <div class="refinement-phase hidden" id="refinement-phase">
+            <div class="selected-cards-area" id="selected-cards-area">
+                <!-- Cards will be moved here -->
             </div>
 
-            <!-- Card 2: Founder's Dilemma -->
-            <div class="problem-card" data-angle="founders-dilemma">
-                <div class="card-image">💸</div>
-                <h2 class="card-title">The Founder's Dilemma</h2>
-                <p class="card-description">
-                    Founders lack budget for expert strategists and are forced to guess or use generic templates.
-                </p>
-                <button class="adopt-button">Adopt this Angle</button>
-            </div>
+            <div class="refinement-panel">
+                <h2 class="refinement-title">Refine Your Angle</h2>
+                
+                <div class="form-group">
+                    <label class="form-label">Name:</label>
+                    <input type="text" class="form-input" id="angle-name" placeholder="Enter angle name">
+                </div>
 
-            <!-- Card 3: Living Strategy Gap -->
-            <div class="problem-card" data-angle="living-strategy">
-                <div class="card-image">🔄</div>
-                <h2 class="card-title">The "Living Strategy" Gap</h2>
-                <p class="card-description">
-                    The market lacks a tool that treats GTM as a continuous process. The problem isn't just the initial plan creation.
-                </p>
-                <button class="adopt-button">Adopt this Angle</button>
-            </div>
+                <div class="form-group">
+                    <label class="form-label">Explanation:</label>
+                    <textarea class="form-textarea" id="angle-explanation" placeholder="Describe the problem this angle addresses..."></textarea>
+                </div>
 
-            <!-- Card 4: Execution Bottleneck -->
-            <div class="problem-card" data-angle="execution-bottleneck">
-                <div class="card-image">🚧</div>
-                <h2 class="card-title">The Execution Bottleneck</h2>
-                <p class="card-description">
-                    The real problem is the gap between strategy and daily execution. Teams struggle to operationalize plans.
-                </p>
-                <button class="adopt-button">Adopt this Angle</button>
+                <div class="form-group">
+                    <label class="form-label">Tags:</label>
+                    <div class="tags-container" id="tags-container">
+                        <!-- Tags will be populated dynamically -->
+                    </div>
+                </div>
+
+                <button class="primary-button" id="save-lock-button">Save & Lock In</button>
+                <button class="secondary-button" id="choose-different-button">Choose a different angle</button>
             </div>
         </div>
     </main>
@@ -209,19 +445,44 @@
             localStorage.setItem('productDescription', productDescription);
         }
 
-        // Handle adopt button clicks
+        let selectedAngle = null;
+        let selectedCard = null;
+
+        // Problem angle data
+        const angleData = {
+            'static-plan': {
+                title: "The 'Static Plan' Problem",
+                description: "Traditional GTM plans are static documents that become obsolete in a fast-changing market.",
+                tags: ['Strategy', 'Planning']
+            },
+            'founders-dilemma': {
+                title: "The Founder's Dilemma",
+                description: "Founders lack budget for expert strategists and are forced to either guess at their GTM strategy or use generic templates that don't apply to their unique business.",
+                tags: ['Audience', 'Budget']
+            },
+            'living-strategy': {
+                title: "The 'Living Strategy' Gap",
+                description: "The market lacks a tool that treats GTM as a continuous process. The problem isn't just the initial plan creation, but ongoing optimization and adaptation.",
+                tags: ['Process', 'Continuous']
+            },
+            'execution-bottleneck': {
+                title: "The Execution Bottleneck",
+                description: "The real problem is the gap between strategy and daily execution. Teams struggle to operationalize strategic plans into actionable tasks.",
+                tags: ['Execution', 'Gap']
+            }
+        };
+
+        // Handle adopt button clicks - Phase 1 to Phase 2 transition
         document.querySelectorAll('.adopt-button').forEach(button => {
             button.addEventListener('click', function(e) {
                 e.stopPropagation();
                 const card = this.closest('.problem-card');
                 const angle = card.getAttribute('data-angle');
                 
-                // Store the selected angle
-                localStorage.setItem('selectedAngle', angle);
+                selectedAngle = angle;
+                selectedCard = card;
                 
-                // In the future, this will navigate to the next step
-                console.log('Selected angle:', angle);
-                alert('Angle selected: ' + angle + '\n\nNext steps coming soon!');
+                transitionToRefinement(card, angle);
             });
         });
 
@@ -231,6 +492,103 @@
                 const button = this.querySelector('.adopt-button');
                 button.click();
             });
+        });
+
+        function transitionToRefinement(selectedCard, angle) {
+            const selectionPhase = document.getElementById('selection-phase');
+            const refinementPhase = document.getElementById('refinement-phase');
+            const selectedCardsArea = document.getElementById('selected-cards-area');
+            
+            // Hide selection phase
+            selectionPhase.classList.add('fade-out');
+            
+            setTimeout(() => {
+                selectionPhase.classList.add('hidden');
+                
+                // Move all cards to refinement area
+                const allCards = document.querySelectorAll('.problem-card');
+                allCards.forEach(card => {
+                    const cardClone = card.cloneNode(true);
+                    
+                    if (card.getAttribute('data-angle') === angle) {
+                        cardClone.classList.add('selected');
+                        cardClone.innerHTML += '<div class="selected-label">Your Chosen Angle</div>';
+                    } else {
+                        cardClone.classList.add('greyed-out');
+                    }
+                    
+                    selectedCardsArea.appendChild(cardClone);
+                });
+                
+                // Populate refinement form
+                populateRefinementForm(angle);
+                
+                // Show refinement phase
+                refinementPhase.classList.remove('hidden');
+                refinementPhase.classList.add('fade-in');
+            }, 300);
+        }
+
+        function populateRefinementForm(angle) {
+            const data = angleData[angle];
+            
+            document.getElementById('angle-name').value = data.title;
+            document.getElementById('angle-explanation').value = data.description;
+            
+            // Populate tags
+            const tagsContainer = document.getElementById('tags-container');
+            tagsContainer.innerHTML = '';
+            data.tags.forEach(tag => {
+                const tagElement = document.createElement('div');
+                tagElement.className = 'tag';
+                tagElement.textContent = tag;
+                tagsContainer.appendChild(tagElement);
+            });
+        }
+
+        // Handle Save & Lock In
+        document.getElementById('save-lock-button').addEventListener('click', function() {
+            const refinedName = document.getElementById('angle-name').value;
+            const refinedExplanation = document.getElementById('angle-explanation').value;
+            
+            // Store refined data
+            const refinedAngle = {
+                original: selectedAngle,
+                name: refinedName,
+                explanation: refinedExplanation,
+                timestamp: new Date().toISOString()
+            };
+            
+            localStorage.setItem('refinedProblemDefinition', JSON.stringify(refinedAngle));
+            localStorage.setItem('step1Completed', 'true');
+            
+            // Show confirmation and redirect
+            alert('Problem Definition Saved!\n\nReturning to GTM Blueprint...');
+            
+            // Navigate back to blueprint with completion status
+            window.location.href = 'blueprint.html?step1=completed&product=' + encodeURIComponent(productDescription || '');
+        });
+
+        // Handle Choose Different Angle
+        document.getElementById('choose-different-button').addEventListener('click', function() {
+            const selectionPhase = document.getElementById('selection-phase');
+            const refinementPhase = document.getElementById('refinement-phase');
+            const selectedCardsArea = document.getElementById('selected-cards-area');
+            
+            // Clear selected cards area
+            selectedCardsArea.innerHTML = '';
+            
+            // Hide refinement phase
+            refinementPhase.classList.remove('fade-in');
+            refinementPhase.classList.add('hidden');
+            
+            // Show selection phase
+            selectionPhase.classList.remove('hidden', 'fade-out');
+            selectionPhase.classList.add('fade-in');
+            
+            // Reset selection
+            selectedAngle = null;
+            selectedCard = null;
         });
     </script>
 
